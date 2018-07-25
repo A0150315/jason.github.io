@@ -10,4 +10,9 @@ class Dep {
             sub.upadte()
         })
     }
+    depend(){
+        Dep.target.addDep(this)
+    }
 }
+
+Dep.target = null;

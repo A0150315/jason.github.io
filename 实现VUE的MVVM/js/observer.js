@@ -15,18 +15,19 @@ function observe(data) {
 
 function defineReactive(data, key, val) {
     const dep = new Dep();
-    observe(val); // 子属性
+    const childObj = observe(val); // 子属性
     Object.defineProperty(data, key, {
         enumerable: true, // 可枚举
         configurable: false, // 不能再define
         get: function () {
             console.log("我被获取了");
-            Dep.target && dep.addSub(Dep.target);
+            Dep.target && dep.depend();
             return val;
         },
         set: function (newVal) {
             if (val === newVal) return;
             console.log(`我被设置了, ${val} ====> ${newVal} `);
+            childObj = observe(newVal);
             val = newVal;
             dep.notify(); // 通知
         }
