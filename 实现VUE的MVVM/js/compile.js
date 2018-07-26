@@ -18,8 +18,9 @@ Compile.prototype = {
         this.compileElement(this.$fragment);
     },
     node2Fragment: function (el) {
-        const fragment = document.createDocumentFragment();
+        var fragment = document.createDocumentFragment();
         let child;
+
         while (child = el.firstChild) {
             fragment.appendChild(child)
         }
@@ -27,7 +28,9 @@ Compile.prototype = {
     },
     compileElement: function (el) {
         const childNodes = el.childNodes;
+
         [].slice.call(childNodes).forEach(node => {
+
             const text = node.textContent;
             const reg = /\{\{(.*)\}\}/; // 双括号表达式文本
             if (this.isElementNode(node)) { // v-指令
@@ -43,6 +46,7 @@ Compile.prototype = {
     compile: function (node) {
         const nodeAttrs = node.attributes;
         [].slice.call(nodeAttrs).forEach(attr => {
+
             const attrName = attr.name;
             if (this.isDirective(attrName)) {
                 const exp = attr.value; // 内容
@@ -84,10 +88,19 @@ const compileUtil = {
             updaterFn && updaterFn(node, value, oldValue);
         });
     },
+    model: function (node, vm, exp) {
+        node.value = vm[exp]
+        node.addEventListener('input', e => {
+            vm[exp] = e.target.value;
+        }, false)
+        new Watcher(vm, exp, function (value, oldValue) {
+            // 一旦属性值有变化，会收到通知执行此更新函数，更新视图
+            updater.modelUpdater(node, value, oldValue);
+        });
+    },
     eventHandler: function (node, vm, exp, dir) {
         const eventType = dir.split(':')[1]; // on:click
         const fn = vm.$options.methods && vm.$options.methods[exp]; // 获取函数主体
-
         if (eventType && fn) {
             node.addEventListener(eventType, fn.bind(vm), false)
         }
@@ -97,5 +110,8 @@ const compileUtil = {
 const updater = {
     textUpdater: function (node, value) {
         node.textContent = typeof value == 'undefined' ? '' : value;
+    },
+    modelUpdater: function (node, value) {
+        node.value = typeof value == 'undefined' ? '' : value;
     }
 }

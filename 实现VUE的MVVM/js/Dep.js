@@ -1,16 +1,16 @@
 class Dep {
     constructor() {
-        this.subs = [];
+        this.subs = []; // Wacther列表
     }
     addSub(sub) {
         this.subs.push(sub);
     }
     notify() {
         this.subs.forEach(sub => {
-            sub.upadte()
+            sub.update() // 触发Watcher的update
         })
     }
-    depend(){
+    depend() {
         Dep.target.addDep(this)
     }
 }

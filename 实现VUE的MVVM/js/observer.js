@@ -1,10 +1,3 @@
-const data = {
-    name: 'kindeng'
-};
-observe(data); // 监听 data
-
-data.name = 'dmq'; // 哈哈哈，监听到值变化了 kindeng --> dmq
-
 function observe(data) {
     if (!data || typeof data !== "object") return;
     // Object.keys(obj) 获取对象属性数组
@@ -15,7 +8,7 @@ function observe(data) {
 
 function defineReactive(data, key, val) {
     const dep = new Dep();
-    const childObj = observe(val); // 子属性
+    let childObj = observe(val); // 子属性
     Object.defineProperty(data, key, {
         enumerable: true, // 可枚举
         configurable: false, // 不能再define
