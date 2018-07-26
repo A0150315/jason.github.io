@@ -1,36 +1,35 @@
-/**
- * Compile
- * 
- * @param {Element} el
- * @param {Object} vm
- */
-function Compile(el, vm) {
-    this.$vm = vm;
-    this.$el = this.isElementNode(el) ? el : document.querySelector(el)
-    if (this.$el) {
-        this.$fragment = this.node2Fragment(this.$el);
-        this.init();
-        this.$el.appendChild(this.$fragment)
+class Compile {
+    /**
+     * 添加一个Compile实例
+     * @param {String} el
+     * @param {MVVM} vm
+     * @memberof Compile
+     */
+    constructor(el, vm) {
+        this.$vm = vm;
+        this.$el = this.isElementNode(el) ? el : document.querySelector(el)
+        if (this.$el) {
+            this.$fragment = this.node2Fragment(this.$el); // 把html节点转换为文档片段，储存在内存中
+            this.init();
+            this.$el.appendChild(this.$fragment)
+        }
     }
-}
-Compile.prototype = {
-    init: function () {
+    init() {
         this.compileElement(this.$fragment);
-    },
-    node2Fragment: function (el) {
+    }
+    node2Fragment(el) {
         var fragment = document.createDocumentFragment();
         let child;
 
         while (child = el.firstChild) {
+            // appendChild将元素从dom上移到fragment
             fragment.appendChild(child)
         }
         return fragment;
-    },
-    compileElement: function (el) {
+    }
+    compileElement(el) {
         const childNodes = el.childNodes;
-
         [].slice.call(childNodes).forEach(node => {
-
             const text = node.textContent;
             const reg = /\{\{(.*)\}\}/; // 双括号表达式文本
             if (this.isElementNode(node)) { // v-指令
@@ -42,8 +41,8 @@ Compile.prototype = {
                 this.compileElement(node)
             }
         })
-    },
-    compile: function (node) {
+    }
+    compile(node) {
         const nodeAttrs = node.attributes;
         [].slice.call(nodeAttrs).forEach(attr => {
 
@@ -58,20 +57,20 @@ Compile.prototype = {
                 }
             }
         })
-    },
-    compileText: function (node, exp) {
+    }
+    compileText(node, exp) {
         compileUtil.text(node, this.$vm, exp)
-    },
-    isElementNode: function (node) {
+    }
+    isElementNode(node) {
         return node.nodeType == 1;
-    },
-    isTextNode: function (node) {
+    }
+    isTextNode(node) {
         return node.nodeType == 3;
-    },
-    isDirective: function (attr) {
+    }
+    isDirective(attr) {
         return attr.indexOf('v-') == 0;
-    },
-    isEventDirective: function (dir) {
+    }
+    isEventDirective(dir) {
         return dir.indexOf('on') === 0;
     }
 }

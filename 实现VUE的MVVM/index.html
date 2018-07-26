@@ -12,7 +12,7 @@
     <div id="mvvm-app">
         <input type="text" v-model="word">
         <p>{{word}}</p>
-        <button v-on:click="sayHi">change model</button>
+        <button v-on:click="sayHi">点我试试</button>
     </div>
 </body>
 <script src="./js/Dep.js"></script>
@@ -21,10 +21,10 @@
 <script src="./js/compile.js"></script>
 <script src="./js/mvvm.js"></script>
 <script>
-    var vm = new MVVM({
+    var vm = new MVVM({ // -> mvvm.js
         el: '#mvvm-app',
         data: {
-            word: 'Hello World!'
+            word: 'Hello World!',
         },
         methods: {
             sayHi: function () {
