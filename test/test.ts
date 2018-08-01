@@ -1,35 +1,33 @@
-namespace Validation {
-    export interface StringValidator {
-        isAcceptable(s: string): boolean;
-    }
+interface Data {
+    data: object
+}
 
-    const lettersRegexp = /^[A-Za-z]+$/;
-    const numberRegexp = /^[0-9]+$/;
-
-    export class LettersOnlyValidator implements StringValidator {
-        isAcceptable(s: string) {
-            return lettersRegexp.test(s);
+function defineReactive(data: object, key: (number | string), val: any) {
+    Object.defineProperty(data, key, {
+        enumerable: true, // 可枚举
+        configurable: false, // 不能再define
+        get: function () {
+            console.log("我被获取了");
+            return val;
+        },
+        set: function (newVal) {
+            if (val === newVal) return;
+            console.log(`我被设置了, ${val} ====> ${newVal} `);
+            val = newVal;
         }
-    }
+    })
+}
 
-    export class ZipCodeValidator implements StringValidator {
-        isAcceptable(s: string) {
-            return s.length === 5 && numberRegexp.test(s);
-        }
+const test: Data = {
+    data: {
+        a: 0
     }
 }
 
-// Some samples to try
-let strings = ["Hello", "98052", "101"];
+Object.keys(test.data).forEach(function (key) {
+    defineReactive(test.data, key, test.data[key]) // 为每一个属性配置Property 👇
+})
+const OtherData: Data = {} as Data
+OtherData.data = test.data;
 
-// Validators to use
-let validators: { [s: string]: Validation.StringValidator; } = {};
-validators["ZIP code"] = new Validation.ZipCodeValidator();
-validators["Letters only"] = new Validation.LettersOnlyValidator();
-
-// Show whether each string passed each validator
-for (let s of strings) {
-    for (let name in validators) {
-        console.log(`"${ s }" - ${ validators[name].isAcceptable(s) ? "matches" : "does not match" } ${ name }`);
-    }
-}
+OtherData.data.a = 1
