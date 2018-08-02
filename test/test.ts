@@ -1,5 +1,10 @@
 interface Data {
-    data: object
+    data: data;
+    [propname: string]: any;
+}
+
+interface data {
+    [propname: string]: any;
 }
 
 function defineReactive(data: object, key: (number | string), val: any) {
