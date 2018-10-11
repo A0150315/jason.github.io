@@ -24,3 +24,8 @@ body>div {
     left: 50%;
     transform: translate(-50%, -50%)
 }
+
+span {
+    width: 472px;
+    display: block;
+}
