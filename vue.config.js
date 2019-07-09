@@ -1,4 +1,4 @@
 module.exports = {
   outputDir: 'docs',
-  publicPath:'./'
+  publicPath: '/jason.github.io/'
 }
