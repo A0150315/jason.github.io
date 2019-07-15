@@ -1,10 +1,21 @@
 // 字体大小
 $fontsize-tiny: 12px !default;
 $fontsize-small: 14px !default;
+$fontsize-big: 16px !default;
+$fontsize-large: 18px !default;
 
 // 盒模型
 %flexWrap {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+}
+
+%plaidBackground {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 0),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 0),
+    linear-gradient(white 1px, transparent 0),
+    linear-gradient(90deg, white 1px, transparent 0);
+  background-position: 0 0, 15px 15px;
+  background-size: 30px 30px;
 }

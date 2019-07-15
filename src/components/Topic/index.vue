@@ -1,16 +1,16 @@
 <template>
-  <div :class="['topic',,{'topic__error':Object.values(errorMap)[0]}]">
-    <p>
+  <div :class="['topic',{'topic__error':Object.values(errorMap)[0]}]">
+    <p class="title">
       #{{serialNumber}}、{{data.title}}
     </p>
     <main class="options-block">
-      <div :class="['options',{'options__selected':opt.id===selectedOpitonsID},{'options__error':errorMap[opt.id]}]"
-           v-for="(opt,index) in data.options"
-           :key="opt.id"
-           @click="()=>optionsHandler(opt.id)">
+      <a :class="['options',{'options__selected':opt.id===selectedOpitonsID},{'options__error':errorMap[opt.id]}]"
+         v-for="(opt,index) in data.options"
+         :key="opt.id"
+         @click="()=>optionsHandler(opt.id)">
         {{optionsSymbol[+index]}}
         、{{opt.name}}
-      </div>
+      </a>
     </main>
   </div>
 </template>
@@ -28,8 +28,8 @@ export default class TopicBlock extends Vue {
   @Prop({ default: () => {} }) private onChange!: (id: number) => void;
   @Prop({
     default: () => ({
-      title: "我是问题标题",
-      id: 1,
+      title: "标题",
+      id: 0,
       options: [
         {
           id: 1,
@@ -68,6 +68,7 @@ export default class TopicBlock extends Vue {
 <style scoped lang="scss">
 .topic {
   position: relative;
+  margin-bottom: 50px;
   &__error::after {
     background: url("./state.png") -195px -77px no-repeat;
     content: "\20";
@@ -79,16 +80,28 @@ export default class TopicBlock extends Vue {
     height: 85px;
   }
 }
+.title {
+  font-size: $fontsize-big;
+  font-weight: bold;
+  margin-bottom: 25px;
+  text-align: left;
+}
 .options-block {
   @extend %flexWrap;
+  padding-left: 40px;
   & > .options {
     width: 50%;
   }
 }
 .options {
+  cursor: pointer;
   font-size: $fontsize-small;
   text-align: left;
   position: relative;
+  margin-bottom: 20px;
+  &:hover{
+    color: #000;
+  }
   &__selected {
     &::before {
       background: url("./state.png") -75px -140px no-repeat;

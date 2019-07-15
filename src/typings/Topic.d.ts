@@ -4,5 +4,6 @@ declare namespace Topic {
     id: number
     answer: number
     options: { id: number; name: string }[]
+    code?: string
   }
 }
