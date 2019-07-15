@@ -1,12 +1,9 @@
 declare namespace Topic {
   export interface Data {
-    ver: string
-    msgId: string
-    timestamp: string
-    accessToken: string
-    openType: string
-    message: string
-    appId: string
-    expandParams: string
+    title: string
+    id: number
+    answer: number
+    options: { id: number; name: string }[]
+    code?: string
   }
 }
