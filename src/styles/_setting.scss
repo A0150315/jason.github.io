@@ -1,3 +1,10 @@
 // 字体大小
 $fontsize-tiny: 12px !default;
 $fontsize-small: 14px !default;
+
+// 盒模型
+%flexWrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
