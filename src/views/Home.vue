@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <Topic v-for="(topic,index) in topicList"
-           :key="topic.id"
+           :key="index"
            :data="topic"
            :serialNumber="index+1"
            :errorMap="errorList[index]"
