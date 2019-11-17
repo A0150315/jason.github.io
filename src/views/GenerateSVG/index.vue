@@ -35,20 +35,21 @@ export default Vue.extend({
   computed: {
     clipboardText() {
       return (
-        `<section style="display: inline-block;vertical-align: middle;line-height: 0;box-sizing: border-box;height: ${this.height}px;">
-  <section style="box-sizing: border-box;height: 100%;" powered-by="xiumi.us">
-    <section style="background-image: url(&quot;${this.backgroundUrl}&quot;);background-position: 50% 50%;background-repeat: no-repeat;background-size: cover;background-attachment: scroll;width: 100%;margin-left: auto;margin-right: auto;box-sizing: border-box;">
+        `<section style="text-align: justify;">
+  <section style="display: inline-block;vertical-align: middle;line-height: 0;box-sizing: border-box;height: ${this.height}px;width: ${this.width}px;">
+    <section style="background-image: url(&quot;${this.backgroundUrl}&quot;);background-position: 50% 50%;background-repeat: no-repeat;background-size: cover;background-attachment: scroll;width: 100%;margin-left: auto;margin-right: auto;box-sizing: border-box;height: ${this.height}px;">​
+    </section>
+    <section style="box-sizing: border-box;margin-top: -${this.height}px;height: ${this.height}px;">
+      <svg style="background-image: url(&quot;${this.coverUrl}&quot;);background-position: 50% 50%;background-repeat: no-repeat;background-size: cover;background-attachment: scroll;width: 100%;margin-left: auto;margin-right: auto;box-sizing: border-box;height: ${this.height}px;" xmlns="http://www.w3.org/2000/svg">
+        <animate attributeName="width" style="box-sizing: border-box;" fill="freeze" to="0" from="1" duration="0.01" begin="click + 0.01s">
+        </animate>
+        <animate attributeName="opacity" style="box-sizing: border-box;" fill="freeze" dur="0.01" begin="click" from="1" to="0">
+        </animate>
+      </svg>
     </section>
   </section>
-  <section style="box-sizing: border-box;margin-top: - ${this.height}px;height:  ${this.height}px;">
-    <svg width="${this.width}" height="${this.height}" xmlns="http://www.w3.org/2000/svg" style="background-image: url(&quot;${this.coverUrl}&quot;);">
-      <animate attributeName="width" style="box-sizing: border-box;" fill="freeze" to="0" from="1" duration="0.01" begin="click + 0.01s">
-      </animate>
-      <animate attributeName="opacity" style="box-sizing: border-box;" fill="freeze" dur="0.01" begin="click" from="1" to="0">
-      </animate>
-    </svg>
-  </section>
-</section>`)
+</section>
+<p><br/></p>`)
     }
   },
 
