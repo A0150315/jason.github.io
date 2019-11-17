@@ -35,7 +35,8 @@ export default Vue.extend({
   computed: {
     clipboardText() {
       return (
-        `<section style="text-align: justify;">
+        `<p><br></p>
+<section style="text-align: justify;">
   <section style="display: inline-block;vertical-align: middle;line-height: 0;box-sizing: border-box;height: ${this.height}px;width: ${this.width}px;">
     <section style="background-image: url(&quot;${this.backgroundUrl}&quot;);background-position: 50% 50%;background-repeat: no-repeat;background-size: cover;background-attachment: scroll;width: 100%;margin-left: auto;margin-right: auto;box-sizing: border-box;height: ${this.height}px;">​
     </section>
@@ -49,7 +50,7 @@ export default Vue.extend({
     </section>
   </section>
 </section>
-<p><br/></p>`)
+<p><br></p>`)
     }
   },
 
