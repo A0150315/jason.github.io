@@ -11,7 +11,7 @@
                v-model="width"> 像素(px)</li>
     </ul>
     <button class="btn"
-            data-clipboard-text="Just because you can doesn't mean you should — clipboard.js">点击复制代码</button>
+            :data-clipboard-text="clipboardText">点击复制代码</button>
   </div>
 </template>
 <script lang="ts">
@@ -26,23 +26,48 @@ export default Vue.extend({
     return {
       coverUrl: '',
       backgroundUrl: '',
-      height: null,
-      width: null,
+      height: 0,
+      width: 0,
       clipboard: null
+    }
+  },
+
+  computed: {
+    clipboardText() {
+      return (
+        `<section style="display: inline-block;vertical-align: middle;line-height: 0;box-sizing: border-box;height: ${this.height}px;">
+  <section style="box-sizing: border-box;height: 100%;" powered-by="xiumi.us">
+    <section style="background-image: url(&quot;${this.backgroundUrl}&quot;);background-position: 50% 50%;background-repeat: no-repeat;background-size: cover;background-attachment: scroll;width: 100%;margin-left: auto;margin-right: auto;box-sizing: border-box;">
+    </section>
+  </section>
+  <section style="box-sizing: border-box;margin-top: - ${this.height}px;height:  ${this.height}px;">
+    <svg width="${this.width}" height="${this.height}" xmlns="http://www.w3.org/2000/svg" style="background-image: url(&quot;${this.coverUrl}&quot;);">
+      <animate attributeName="width" style="box-sizing: border-box;" fill="freeze" to="0" from="1" duration="0.01" begin="click + 0.01s">
+      </animate>
+      <animate attributeName="opacity" style="box-sizing: border-box;" fill="freeze" dur="0.01" begin="click" from="1" to="0">
+      </animate>
+    </svg>
+  </section>
+</section>`)
     }
   },
 
   methods: {
     initClipboard() {
       this.clipboard = new ClipboardJS('.btn');
+      this.clipboard.on('success', function (e) {
+        alert('复制成功')
+
+        e.clearSelection();
+      });
     }
   },
 
   mounted() {
-    console.log('1', 1)
+    this.initClipboard()
   },
   beforeDestroy() {
-
+    this.clipboard.destroy()
   }
 
 })
