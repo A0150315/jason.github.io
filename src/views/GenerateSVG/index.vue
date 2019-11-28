@@ -25,6 +25,7 @@ export default Vue.extend({
   data() {
     return {
       coverUrl: '',
+      coverUrl1: '',
       backgroundUrl: '',
       height: 0,
       width: 0,
