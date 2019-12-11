@@ -1,6 +1,6 @@
 {
   "name": "hello-world",
-  "version": "0.2.4hotfix2",
+  "version": "0.2.4hotfix3",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
