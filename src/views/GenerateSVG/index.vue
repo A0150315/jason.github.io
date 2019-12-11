@@ -34,7 +34,7 @@ export default Vue.extend({
 
   computed: {
     clipboardText() {
-      const rate = this.height / this.width * 100
+      const rate = (this.height / this.width * 100).toFixed(2)
       return (
         `<p><br></p>
 <section style="text-align: justify;display: inline-block;">
