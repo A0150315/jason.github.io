@@ -37,6 +37,12 @@ export default Vue.extend({
       const rate = (this.height / this.width * 100).toFixed(2)
       return (
         `<p><br></p>
+<p style="max-height: 0;min-height: 0;overflow: hidden;">
+  <img class="rich_pages" data-ratio="1.16640625" data-s="300,640" src="${this.backgroundUrl}" data-type="jpeg" data-w="1280" style="display:block;height:0 !important" _src="${this.backgroundUrl}">
+</p>
+<p style="max-height: 0;min-height: 0;overflow: hidden;">
+  <img class="rich_pages" data-ratio="1.16640625" data-s="300,640" src="${this.coverUrl}" data-type="jpeg" data-w="1280" style="display:block;height:0 !important" _src="${this.coverUrl}">
+</p>
 <section style="text-align: justify;display: inline-block;">
   <section style="display: inline-block;vertical-align: middle;line-height: 0;box-sizing: border-box;width: ${this.width}px;">
     <section style="background-image: url(&quot;${this.backgroundUrl}&quot;);background-position: 50% 50%;background-repeat: no-repeat;background-size: cover;background-attachment: scroll;width: 100%;margin-left: auto;margin-right: auto;box-sizing: border-box;height: 0;padding-bottom: ${rate}%;">
