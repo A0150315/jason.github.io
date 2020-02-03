@@ -5,4 +5,4 @@ export enum optionsSymbol {
   'D'
 }
 
-export default { optionsSymbol }
+export default { optionsSymbol };

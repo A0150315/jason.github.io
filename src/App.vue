@@ -1,9 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app
-               color="primary"
-               dark>
-    </v-app-bar>
+    <v-app-bar app color="primary" dark> </v-app-bar>
     <v-content>
       <Layout>
         <router-view />
@@ -13,11 +10,11 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import Layout from "./layouts/index.vue";
+import Vue from 'vue';
+import Layout from '@/layouts/index.vue';
 
 export default Vue.extend({
-  name: "App",
+  name: 'App',
 
   components: {
     Layout
@@ -30,7 +27,7 @@ export default Vue.extend({
 </script>
 <style lang="scss">
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;

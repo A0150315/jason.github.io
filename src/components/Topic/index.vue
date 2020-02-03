@@ -1,60 +1,64 @@
 <template>
-  <div :class="['topic',{'topic__error':Object.values(errorMap)[0]}]">
-    <p class="title">
-      #{{serialNumber}}、{{data.title}}
-    </p>
+  <div :class="['topic', { topic__error: Object.values(errorMap)[0] }]">
+    <p class="title">#{{ serialNumber }}、{{ data.title }}</p>
     <main class="options-block">
-      <a :class="['options',{'options__selected':opt.id===selectedOpitonsID},{'options__error':errorMap[opt.id]}]"
-         v-for="(opt,index) in data.options"
-         :key="opt.id"
-         @click="()=>optionsHandler(opt.id)">
-        {{optionsSymbol[+index]}}
-        、{{opt.name}}
+      <a
+        :class="[
+          'options',
+          { options__selected: opt.id === selectedOpitonsID },
+          { options__error: errorMap[opt.id] }
+        ]"
+        v-for="(opt, index) in data.options"
+        :key="opt.id"
+        @click="() => optionsHandler(opt.id)"
+      >
+        {{ optionsSymbol[+index] }}
+        、{{ opt.name }}
       </a>
     </main>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import { optionsSymbol } from "./configs";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { optionsSymbol } from './configs';
 
 @Component
 export default class TopicBlock extends Vue {
-  @Prop({ default: "0" }) private serialNumber!: string;
-  @Prop({ default: { "-1": false } }) private errorMap!: {
+  // state
+  optionsSymbol = optionsSymbol;
+  selectedOpitonsID = -1;
+
+  @Prop({ default: '0' }) private serialNumber!: string;
+  @Prop({ default: { '-1': false } }) private errorMap!: {
     [id: string]: boolean;
   };
-  @Prop({ default: () => {} }) private onChange!: (id: number) => void;
+  @Prop({ default: () => undefined }) private onChange!: (id: number) => void;
   @Prop({
     default: () => ({
-      title: "标题",
+      title: '标题',
       id: 0,
       options: [
         {
           id: 1,
-          name: "选项1"
+          name: '选项1'
         },
         {
           id: 2,
-          name: "选项2"
+          name: '选项2'
         },
         {
           id: 3,
-          name: "选项3"
+          name: '选项3'
         },
         {
           id: 4,
-          name: "选项4"
+          name: '选项4'
         }
       ]
     })
   })
   private data!: Topic.Data;
-
-  // state
-  optionsSymbol = optionsSymbol;
-  selectedOpitonsID = -1;
 
   // methods
   optionsHandler(id: number) {
@@ -70,8 +74,8 @@ export default class TopicBlock extends Vue {
   position: relative;
   margin-bottom: 50px;
   &__error::after {
-    background: url("./state.png") -195px -77px no-repeat;
-    content: "\20";
+    background: url('./state.png') -195px -77px no-repeat;
+    content: '\20';
     display: block;
     position: absolute;
     right: 0;
@@ -99,13 +103,13 @@ export default class TopicBlock extends Vue {
   text-align: left;
   position: relative;
   margin-bottom: 20px;
-  &:hover{
+  &:hover {
     color: #000;
   }
   &__selected {
     &::before {
-      background: url("./state.png") -75px -140px no-repeat;
-      content: "\20";
+      background: url('./state.png') -75px -140px no-repeat;
+      content: '\20';
       display: block;
       width: 42px;
       height: 42px;
