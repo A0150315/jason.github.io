@@ -1,12 +1,7 @@
 <template>
-  <v-app>
-    <v-app-bar app color="primary" dark> </v-app-bar>
-    <v-content>
-      <Layout>
-        <router-view />
-      </Layout>
-    </v-content>
-  </v-app>
+  <Layout>
+    <router-view />
+  </Layout>
 </template>
 
 <script lang="ts">

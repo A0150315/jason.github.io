@@ -26,6 +26,7 @@
     "member-access": false,
     "curly": ["error", "multi"],
     "array-type": [true, "array"],
-    "arrow-parens": ["error", "as-needed"]
+    "arrow-parens": ["error", "as-needed"],
+    "object-literal-key-quotes": [true, "as-needed"]
   }
 }
