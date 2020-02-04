@@ -1,8 +1,8 @@
 const path = require('path')
-
 module.exports = {
   outputDir: 'docs',
   publicPath: '/Jason.github.io/',
+  transpileDependencies: ['vuetify'],
   chainWebpack: config => {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
     types.forEach(type =>

@@ -1,29 +1,28 @@
 <template>
-  <div id="app">
-    <Layout>
-      <router-view />
-    </Layout>
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-      <div class="test">1</div>
-    </div> -->
-  </div>
+  <Layout>
+    <router-view />
+  </Layout>
 </template>
+
 <script lang="ts">
-import Vue from 'vue'
-import Layout from '@/layouts/index.vue'
+import Vue from 'vue';
+import Layout from '@/layouts/index.vue';
 
 export default Vue.extend({
+  name: 'App',
+
   components: {
     Layout
-  }
-})
-</script>
+  },
 
+  data: () => ({
+    //
+  })
+});
+</script>
 <style lang="scss">
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;

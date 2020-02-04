@@ -1,27 +1,31 @@
 <template>
   <div class="generate-svg">
     <ul>
-      <li>请输入第一张图片的地址：<input type="text"
-               v-model="backgroundUrl"></li>
-      <li>请输入第二张图片的地址：<input type="text"
-               v-model="coverUrl"></li>
-      <li>请设置高度：<input type="number"
-               v-model="height"> 像素(px)</li>
-      <li>请设置宽度：<input type="number"
-               v-model="width"> 像素(px)</li>
+      <li>
+        请输入第一张图片的地址：<input type="text" v-model="backgroundUrl" />
+      </li>
+
+      <li>请输入第二张图片的地址：<input type="text" v-model="coverUrl" /></li>
+
+      <li>请设置高度：<input type="number" v-model="height" /> 像素(px)</li>
+      <li>请设置宽度：<input type="number" v-model="width" /> 像素(px)</li>
     </ul>
-    <button class="btn"
-            :data-clipboard-text="clipboardText">点击复制代码</button>
+    <button class="btn" :data-clipboard-text="clipboardText">
+      点击复制代码
+    </button>
   </div>
 </template>
 <script lang="ts">
-import Vue from 'vue'
-import { VegetarianDishList, ChivesList, CookMethodsList } from "@/configs/what-will-i-eat";
-import { randomNumber } from "@/core/utils";
+import Vue from 'vue';
+import {
+  VegetarianDishList,
+  ChivesList,
+  CookMethodsList
+} from '@/configs/what-will-i-eat';
+import { randomNumber } from '@/core/utils';
 import ClipboardJS from 'clipboard';
 
 export default Vue.extend({
-
   data() {
     return {
       coverUrl: '',
@@ -29,16 +33,15 @@ export default Vue.extend({
       height: 0,
       width: 0,
       clipboard: null
-    }
+    };
   },
 
   computed: {
-    clipboardText() {
-      const rate = (this.height / this.width * 100).toFixed(2)
+    clipboardText(): string {
+      const rate = ((this.height / this.width) * 100).toFixed(2);
       const backgroundUrl = this.backgroundUrl.split('?')[0];
       const coverUrl = this.coverUrl.split('?')[0];
-      return (
-        `<p><br></p>
+      return `<p><br></p>
 <p style="max-height: 0;min-height: 0;overflow: hidden;">
   <img class="rich_pages" data-ratio="1.16640625" data-s="300,640" src="${backgroundUrl}" data-type="jpeg" data-w="1280" style="display:block;height:0 !important" _src="${backgroundUrl}">
 </p>
@@ -59,15 +62,16 @@ export default Vue.extend({
     </section>
   </section>
 </section>
-<p><br></p>`)
+<p><br></p>`;
     }
   },
 
   methods: {
     initClipboard() {
       this.clipboard = new ClipboardJS('.btn');
-      this.clipboard.on('success', (e) => {
-        alert('复制成功')
+      // @ts-ignore
+      this?.clipboard?.on?.call(this.clipboard, 'success', e => {
+        alert('复制成功');
 
         e.clearSelection();
       });
@@ -75,11 +79,11 @@ export default Vue.extend({
   },
 
   mounted() {
-    this.initClipboard()
+    this.initClipboard();
   },
   beforeDestroy() {
-    this.clipboard.destroy()
+    // @ts-ignore
+    (this?.clipboard?.destroy as () => void)?.call(this.clipboard);
   }
-
-})
+});
 </script>
