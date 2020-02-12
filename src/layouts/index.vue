@@ -134,7 +134,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import BLOGS_DATA from '@/assets/blogs-data';
+import BLOGS_DATA from '@/configs/blogs';
 
 export default Vue.extend({
   data() {
