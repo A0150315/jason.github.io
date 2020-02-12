@@ -6,5 +6,5 @@ export function randomNumber(min: number, max: number) {
 
 export function getBlogsDetails(id: string | (string | null)[]) {
   if (Array.isArray(id) || id === null) return '';
-  return DATA[+id] || id;
+  return DATA[+id].content || id;
 }

@@ -2,7 +2,11 @@
   "defaultSeverity": "warning",
   "extends": ["tslint:recommended"],
   "linterOptions": {
-    "exclude": ["node_modules/**"]
+    "exclude": [
+      "node_modules/**",
+      "src/configs/blogs.ts",
+      "scripts/build-directory.ts"
+    ]
   },
   "rules": {
     "quotemark": [true, "single"],
