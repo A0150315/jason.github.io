@@ -83,7 +83,13 @@
       </v-btn>
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
-          <v-btn href="https://github.com/A0150315" icon large v-on="on" target="_blank">
+          <v-btn
+            href="https://github.com/A0150315"
+            icon
+            large
+            v-on="on"
+            target="_blank"
+          >
             <v-avatar size="32px" item>
               <v-img
                 src="https://avatars3.githubusercontent.com/u/18693417?s=40&v=4"
@@ -128,6 +134,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
+import BLOGS_DATA from '@/configs/blogs';
 
 export default Vue.extend({
   data() {
@@ -146,12 +153,7 @@ export default Vue.extend({
           text: 'Generate SVG',
           to: '/generate-svg/index'
         },
-        { divider: true },
-        { heading: 'Blogs' },
-        { icon: 'mdi-@', text: 'Article 1' },
-        { icon: 'mdi-@', text: 'Article 2' },
-        { icon: 'mdi-@', text: 'Article 3' },
-        { icon: 'mdi-@', text: 'Article 4' }
+        ...BLOGS_DATA
         // {
         //   icon: 'mdi-chevron-up',
         //   'icon-alt': 'mdi-chevron-down',
