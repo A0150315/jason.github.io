@@ -37,18 +37,24 @@ npm install -g typescript
 console.log('Hello World!')
 ```
 - 此时目录结构如下
+
 ![image](https://user-images.githubusercontent.com/18693417/43575454-76f380ca-9679-11e8-9cfb-9f2646021e4e.png)
 
 - 编译ts
     - 使用VSCode的快捷键 Shift + Ctrl + B 开启如下选择框：
-![image](https://user-images.githubusercontent.com/18693417/43575627-e4dc61e2-9679-11e8-9f9a-e1d38274c280.png)
+
+    ![image](https://user-images.githubusercontent.com/18693417/43575627-e4dc61e2-9679-11e8-9f9a-e1d38274c280.png)
     - 这里选哪个都可以，选择“构建”，则表示编译一次就退出编译；选择“监视”，则相当于开启了“watch”选项，编译时会一直监听ts文件的改变，修改一次编译一次；我这里选择“构建”；
     - 构建后，目录结构如下：
-![image](https://user-images.githubusercontent.com/18693417/43575839-658f43b8-967a-11e8-9d29-4f6ec02192a9.png)
+    
+    ![image](https://user-images.githubusercontent.com/18693417/43575839-658f43b8-967a-11e8-9d29-4f6ec02192a9.png)
+    
     - .d.ts文件是相应ts的[声明文件](https://www.tslang.cn/docs/handbook/declaration-files/introduction.html)，具体可以参考官方文档； .js 则是相应ts文件构建编译后的js文件，内部跟ts源文件大致相同：
-![image](https://user-images.githubusercontent.com/18693417/43576065-f8daa13a-967a-11e8-9765-b226b9e4458e.png)
+
+    ![image](https://user-images.githubusercontent.com/18693417/43576065-f8daa13a-967a-11e8-9765-b226b9e4458e.png)
 - **node test** 运行一下
 - 结果：
+
 ![image](https://user-images.githubusercontent.com/18693417/43576137-2df6db36-967b-11e8-8b48-e8b9ab4bc1db.png)
 - 完美~
 # 为已有的Webpack项目添加ts语法支持
@@ -139,6 +145,7 @@ npm i -D ts-loader typescript
 }
 ```
 - 把目录下的index.js改为index.ts文件，此时配合VSCode，index.ts肯定是一堆红色波浪线的，如下
+
 ![image](https://user-images.githubusercontent.com/18693417/43635605-2e00bcba-9742-11e8-8d29-a05d71c17527.png)
 - ### 开始修复小红线；
 - 为 index.ts 添加声明文件
@@ -160,6 +167,7 @@ declare function require(moduleName: string): any;
 /// <reference path="./index.d.ts" />
 ```
 - “require” 的小红线消失
+
 ![image](https://user-images.githubusercontent.com/18693417/43635937-38478ab8-9743-11e8-8968-785c77b863b1.png)
 
 - 修改 angular 引入的方式
@@ -170,6 +178,7 @@ declare function require(moduleName: string): any;
 + import * as angular from 'angular';
 ```
 - 新增警告提示如下：
+
 ![image](https://user-images.githubusercontent.com/18693417/43636207-fc36478e-9743-11e8-9d86-c4c4d75ff37e.png)
 - 遇到这些共用库缺少声明文件的情况，可以到[TypeSearch](http://microsoft.github.io/TypeSearch/)搜索下载网上编写好的声明文件，这里我就直接安装了：
 
@@ -177,6 +186,7 @@ declare function require(moduleName: string): any;
 npm i -D  @types/angular
 ```
 - 安装好后，又消灭一个小红线
+
 ![image](https://user-images.githubusercontent.com/18693417/43636375-7a567c74-9744-11e8-9617-c4fa059e1be1.png)
 - 再根据红线提醒，根据ts语法，为函数或其他变量添加类型声明，红线全部消灭，舒服！
 
@@ -235,6 +245,7 @@ interface Day {
     tomorrow?: number;
 }
 ```
+
 ![image](https://user-images.githubusercontent.com/18693417/43637243-0642a260-9747-11e8-96b3-3ab886a54da2.png)
 - 最终目录结构：
 ```
