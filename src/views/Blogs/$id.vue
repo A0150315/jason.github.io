@@ -13,18 +13,18 @@ import { appName } from '@/configs/app';
 export default Vue.extend({
   computed: {
     html() {
-      return marked(getBlogsDetails(this.$route?.params?.id), {
+      return marked(getBlogsDetails(this.$route.params.id), {
         sanitize: true
       });
     }
   },
   beforeRouteUpdate(to, from, next) {
-    document.title = DATA[+to?.params?.id].name;
+    document.title = DATA[+to.params.id].name;
     next();
   },
   mounted() {
     sessionStorage.tempTitle = document.title;
-    document.title = DATA[+this.$route?.params?.id].name;
+    document.title = DATA[+this.$route.params.id].name;
   },
   destroyed() {
     document.title = sessionStorage.tempTitle || appName;
@@ -131,12 +131,12 @@ export default Vue.extend({
     word-break: normal;
   }
 
-  code{
+  code {
     background-color: initial !important;
     box-shadow: initial !important;
     color: #6a737d !important;
-    &::before{
-      content: '' !important;
+    &::before {
+      content: "" !important;
     }
   }
 }

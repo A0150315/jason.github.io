@@ -70,7 +70,7 @@ export default Vue.extend({
     initClipboard() {
       this.clipboard = new ClipboardJS('.btn');
       // @ts-ignore
-      this?.clipboard?.on?.call(this.clipboard, 'success', e => {
+      this.clipboard.on.call(this.clipboard, 'success', e => {
         alert('复制成功');
 
         e.clearSelection();
@@ -83,7 +83,7 @@ export default Vue.extend({
   },
   beforeDestroy() {
     // @ts-ignore
-    (this?.clipboard?.destroy as () => void)?.call(this.clipboard);
+    (this.clipboard.destroy as () => void).call(this.clipboard);
   }
 });
 </script>
