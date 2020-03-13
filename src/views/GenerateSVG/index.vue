@@ -132,8 +132,7 @@ export default Vue.extend({
       this.clipboard = new ClipboardJS('[name="btn"]');
       // @ts-ignore
       this.clipboard.on.call(this.clipboard, 'success', e => {
-        alert('复制成功');
-
+        this.hasSussess = true;
         e.clearSelection();
       });
     }
