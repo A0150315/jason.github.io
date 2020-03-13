@@ -230,6 +230,6 @@ const topList: Topic.Data[] = [
       }
     ]
   }
-]
+];
 
-export default topList
+export default topList;

@@ -1,22 +1,27 @@
 <template>
   <div class="home">
-    <Topic v-for="(topic,index) in topicList"
-           :key="index"
-           :data="topic"
-           :serialNumber="index+1"
-           :errorMap="errorList[index]"
-           :onChange="topicHandler(index)" />
-    <button @click="submitAndCheck"
-            @mousedown="isSubmitBtnPressing = true"
-            :class="['button',{'button__down':isSubmitBtnPressing}]">提交</button>
-
+    <Topic
+      v-for="(topic, index) in topicList"
+      :key="index"
+      :data="topic"
+      :serialNumber="index + 1"
+      :errorMap="errorList[index]"
+      :onChange="topicHandler(index)"
+    />
+    <button
+      @click="submitAndCheck"
+      @mousedown="isSubmitBtnPressing = true"
+      :class="['button', { button__down: isSubmitBtnPressing }]"
+    >
+      提交
+    </button>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import Topic from "@/components/Topic/index.vue"; // @ is an alias to /src
-import topicList from "@/assets/data";
+import { Component, Vue } from 'vue-property-decorator';
+import Topic from '@/components/Topic/index.vue'; // @ is an alias to /src
+import topicList from '@/assets/data';
 
 @Component({
   components: {
@@ -63,11 +68,11 @@ export default class Home extends Vue {
     this.isSubmitBtnPressing = false;
   }
 
-  mounted() {
-    document.addEventListener("mouseup", this.submitBtnPressUp);
+  protected mounted() {
+    document.addEventListener('mouseup', this.submitBtnPressUp);
   }
-  destroy() {
-    document.removeEventListener("mouseup", this.submitBtnPressUp);
+  protected destroy() {
+    document.removeEventListener('mouseup', this.submitBtnPressUp);
   }
 }
 </script>
