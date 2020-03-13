@@ -1,56 +1,51 @@
 <template>
   <div class="generate-svg">
-    <v-card class="overflow-hidden"
-            color="primary lighten-1"
-            dark>
-      <v-toolbar flat
-                 color="primary"
-                 dark>
-        <v-toolbar-title class="font-weight-light">请输入图片相关信息</v-toolbar-title>
+    <v-card class="overflow-hidden" color="primary lighten-1" dark>
+      <v-toolbar flat color="primary" dark>
+        <v-toolbar-title class="font-weight-light"
+          >请输入图片相关信息</v-toolbar-title
+        >
         <v-spacer />
         <v-icon>mdi-pencil</v-icon>
       </v-toolbar>
       <v-card-text>
-        <v-text-field color="white"
-                      v-model="backgroundUrl"
-                      label="第一张图片的地址" />
-        <v-text-field color="white"
-                      v-model="coverUrl"
-                      label="第二张图片的地址" />
-        <v-text-field color="white"
-                      v-model="decorateUrl"
-                      label="背景图的地址" />
-        <v-text-field color="white"
-                      v-model="width"
-                      label="宽度" />
-        <v-text-field color="white"
-                      v-model="height"
-                      label="高度" />
+        <v-text-field
+          color="white"
+          v-model="backgroundUrl"
+          label="第一张图片的地址"
+        />
+        <v-text-field
+          color="white"
+          v-model="coverUrl"
+          label="第二张图片的地址"
+        />
+        <v-text-field
+          color="white"
+          v-model="decorateUrl"
+          label="背景图的地址"
+        />
+        <v-text-field color="white" v-model="width" label="宽度" />
+        <v-text-field color="white" v-model="height" label="高度" />
       </v-card-text>
       <v-divider></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn name="btn"
-               outlined
-               :data-clipboard-text="clipboardText">
+        <v-btn name="btn" outlined :data-clipboard-text="clipboardText">
           生成可点击图片
         </v-btn>
-        <v-btn name="btn"
-               outlined
-               :data-clipboard-text="scrollPicClipboardText">
+        <v-btn
+          name="btn"
+          outlined
+          :data-clipboard-text="scrollPicClipboardText"
+        >
           生成可滚动图片
         </v-btn>
       </v-card-actions>
-      <v-snackbar v-model="hasSussess"
-                  :timeout="2000"
-                  absolute
-                  bottom
-                  left>
+      <v-snackbar v-model="hasSussess" :timeout="2000" absolute bottom left>
         复制成功
       </v-snackbar>
     </v-card>
   </div>
-
 </template>
 <script lang="ts">
 import Vue from 'vue';
@@ -134,7 +129,6 @@ export default Vue.extend({
 
   methods: {
     initClipboard() {
-      document.querySelector('[btn]')
       this.clipboard = new ClipboardJS('[name="btn"]');
       // @ts-ignore
       this.clipboard.on.call(this.clipboard, 'success', e => {
