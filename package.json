@@ -42,7 +42,7 @@
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
     "text-loader": "0.0.1",
-    "ts-jest": "^25.2.0",
+    "ts-jest": "^26.5.4",
     "ts-node": "^8.6.2",
     "typescript": "^3.4.3",
     "vue-cli-plugin-vuetify": "^2.0.3",
